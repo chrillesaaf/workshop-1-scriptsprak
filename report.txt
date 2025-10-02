@@ -1,3 +1,18 @@
-SUMMARY:
-⚠ Critical: 2 devices offline
-⚠ Warning:
+--------------------------------------------------------------------------------------------------
+NETWORK REPORT - TechCorp AB
+--------------------------------------------------------------------------------------------------
+
+SUMMARY
+--------------------------------------------------------------------------------------------------
+⚠ Critical: 2 devices is offline
+⚠ Warning: 3 devices with warnings
+⚠ 9 devices with low uptime (<30 days)
+⚠ 11 switches with high port usage (>80%)
+
+DEVICES WITH PROBLEMS
+----------------------
+Status: OFFLINE
+ SW-ACCESS-03      192.168.1.5         switch         Huvudkontor    
+ AP-LAGER-02       192.168.200.102     access_point   Lager          
+
+Status: WARNING
