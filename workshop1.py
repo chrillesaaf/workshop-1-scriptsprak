@@ -23,6 +23,27 @@ for location in data["locations"]:
             
 report += "\nStatus: WARNING\n"
 
+for location in data["locations"]:
+    for device in location["devices"]:
+        if device["status"] == "warning":
+            report += (" "
+                    + device["hostname"].ljust(15)
+                    + device["ip_address"].ljust(15)
+                    + device["type"].ljust(15)
+                    + location["site"].ljust(15)
+                    + "Uptime (days): " + str(device["uptime_days"]).ljust(20)
+                    )
+            if "connected_clients" in device and device["connected_clients"] > 40:
+                report += (
+                "Connected clients: " + str(device["connected_clients"]).ljust(20) 
+                + "\n"
+                )
+
+report += "\nDEVICES WITH LOW UPTIME\n"
+report += "----------------------\n"
+
+# line ska jag använda
+
 # Create a summary of the critical data
 summary =""
 summary += "--------------------------------------------------------------------------------------------------\n"
