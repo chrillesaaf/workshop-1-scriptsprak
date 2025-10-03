@@ -26,18 +26,22 @@ report += "\nStatus: WARNING\n"
 for location in data["locations"]:
     for device in location["devices"]:
         if device["status"] == "warning":
-            report += (" "
-                    + device["hostname"].ljust(15)
-                    + device["ip_address"].ljust(15)
+            line = (" "
+                    + device["hostname"].ljust(20)
+                    + device["ip_address"].ljust(20)
                     + device["type"].ljust(15)
                     + location["site"].ljust(15)
-                    + "Uptime (days): " + str(device["uptime_days"]).ljust(20)
-                    )
+        )
+            
+            warning = ""
+            if "uptime_days" in device and device["uptime_days"] < 6:
+                warning += "Uptime days: " + str(device["uptime_days"]).ljust(3)
             if "connected_clients" in device and device["connected_clients"] > 40:
-                report += (
-                "Connected clients: " + str(device["connected_clients"]).ljust(20) 
-                + "\n"
-                )
+                warning += "Connected clients: " + str(device["connected_clients"]).ljust(10)
+
+            # Lägg till radbrytning efter hela raden
+            report += line + warning + "\n"
+
 
 report += "\nDEVICES WITH LOW UPTIME\n"
 report += "----------------------\n"

@@ -12,9 +12,13 @@ SUMMARY
 DEVICES WITH PROBLEMS
 ----------------------
 Status: OFFLINE
+ SW-ACCESS-03      192.168.1.5         switch         Huvudkontor    
+ AP-LAGER-02       192.168.200.102     access_point   Lager          
 
 Status: WARNING
- AP-FLOOR2-02   192.168.20.102 access_point   Huvudkontor    Uptime (days): 2                   Connected clients: 45                  
- RT-LAGER-01    192.168.2.254  router         Lager          Uptime (days): 2                    SW-DC-TOR-02   10.0.1.2       switch         Datacenter     Uptime (days): 5                   
+ AP-FLOOR2-02        192.168.20.102      access_point   Huvudkontor    Uptime days: 2  Connected clients: 45        
+ RT-LAGER-01         192.168.2.254       router         Lager          Uptime days: 2  
+ SW-DC-TOR-02        10.0.1.2            switch         Datacenter     Uptime days: 5  
+
 DEVICES WITH LOW UPTIME
 ----------------------
