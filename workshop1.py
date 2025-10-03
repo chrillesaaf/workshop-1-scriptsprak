@@ -1,14 +1,22 @@
 # Import the json library so that we can handle json
 import json
+from datetime import datetime
 
 # Read json from products.json to the variable data
 data = json.load(open("network_devices.json","r",encoding = "utf-8"))
+
+time = datetime.now()
+t_format = time.strftime('%Y-%m-%d %H:%M:%S') 
+
+if "last_updated" in data:
+    time = datetime.fromisoformat(data["last_updated"])
+    t_format2 = time.strftime('%Y-%m-%d %H:%M:%S')
 
 # Create a variable that holds our whole text report
 report = ""
 
 report += "\nDEVICES WITH PROBLEMS\n"
-report += "----------------------\n"
+report += "--------------------------\n"
 report += "Status: OFFLINE\n"
 
 for location in data["locations"]:
@@ -27,7 +35,7 @@ for location in data["locations"]:
     for device in location["devices"]:
         if device["status"] == "warning":
             line = (" "
-                    + device["hostname"].ljust(20)
+                    + device["hostname"].ljust(18)
                     + device["ip_address"].ljust(20)
                     + device["type"].ljust(15)
                     + location["site"].ljust(15)
@@ -39,20 +47,22 @@ for location in data["locations"]:
             if "connected_clients" in device and device["connected_clients"] > 40:
                 warning += "Connected clients: " + str(device["connected_clients"]).ljust(10)
 
-            # Lägg till radbrytning efter hela raden
             report += line + warning + "\n"
 
 
 report += "\nDEVICES WITH LOW UPTIME\n"
-report += "----------------------\n"
+report += "--------------------------\n"
 
-# line ska jag använda
 
 # Create a summary of the critical data
 summary =""
 summary += "--------------------------------------------------------------------------------------------------\n"
-summary += "NETWORK REPORT - TechCorp AB\n"
-summary += "--------------------------------------------------------------------------------------------------\n"
+summary += "NETWORK REPORT: "
+for company in data["company"]:
+    summary += company
+summary += "\n--------------------------------------------------------------------------------------------------\n"
+summary += f"Report Date: {t_format}\n"
+summary += f"Data Update: {t_format2}\n"
 summary += "\n"
 summary += "SUMMARY\n"
 summary += "--------------------------------------------------------------------------------------------------\n"
