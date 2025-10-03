@@ -50,9 +50,24 @@ for location in data["locations"]:
             report += line + warning + "\n"
 
 
-report += "\nDEVICES WITH LOW UPTIME\n"
-report += "--------------------------\n"
+report += "\nDEVICES WITH LOW UPTIME (<30 days)\n"
+report += "----------------------------------------\n"
+report += "Hostname".ljust(18) + "Uptime".ljust(12) + "Site".ljust(18) + "Status\n"
 
+for location in data["locations"]:
+
+    sorted_devices = sorted(
+        location["devices"],
+        key=lambda d: int(d.get("uptime_days", 9999))
+    )
+
+    for device in sorted_devices:
+        if "uptime_days" in device and int(device["uptime_days"]) < 31:
+            hostname = device["hostname"].ljust(18)
+            uptime = (str(device["uptime_days"]) + " days").ljust(12)
+            site = location["site"].ljust(18)
+            status = "⚠ WARNING" if device.get("status") == "warning" else ""
+            report += hostname + uptime + site + status + "\n"
 
 # Create a summary of the critical data
 summary =""

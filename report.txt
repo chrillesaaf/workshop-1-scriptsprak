@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------
-                                    NETWORK REPORT: TechCorp AB
+NETWORK REPORT: TechCorp AB
 --------------------------------------------------------------------------------------------------
-Report Date: 2025-10-03 15:41:33
+Report Date: 2025-10-03 18:15:38
 Data Update: 2024-09-30 10:30:00
 
 SUMMARY
@@ -22,5 +22,15 @@ Status: WARNING
  RT-LAGER-01       192.168.2.254       router         Lager          Uptime days: 2  
  SW-DC-TOR-02      10.0.1.2            switch         Datacenter     Uptime days: 5  
 
-DEVICES WITH LOW UPTIME
---------------------------
+DEVICES WITH LOW UPTIME (<30 days)
+----------------------------------------
+Hostname          Uptime      Site              Status
+SW-ACCESS-03      0 days      Huvudkontor       
+AP-FLOOR2-02      2 days      Huvudkontor       ⚠ WARNING
+AP-FLOOR2-01      12 days     Huvudkontor       
+SW-ACCESS-05      15 days     Huvudkontor       
+AP-LAGER-02       0 days      Lager             
+RT-LAGER-01       2 days      Lager             ⚠ WARNING
+SW-LAGER-02       23 days     Lager             
+SW-MAL-ACC-02     8 days      Kontor Malmö      
+SW-DC-TOR-02      5 days      Datacenter        ⚠ WARNING
