@@ -1,29 +1,29 @@
---------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 NETWORK REPORT: TechCorp AB
---------------------------------------------------------------------------------------------------
-Report Date: 2025-10-03 18:15:38
+--------------------------------------------------------------------------
+Report Date: 2025-10-04 13:59:32
 Data Update: 2024-09-30 10:30:00
 
 SUMMARY
---------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 ⚠ Critical: 2 devices is offline
 ⚠ Warning: 3 devices with warnings
 ⚠ 9 devices with low uptime (<30 days)
 ⚠ 11 switches with high port usage (>80%)
 
 DEVICES WITH PROBLEMS
---------------------------
+--------------------------------------------------------------------------
 Status: OFFLINE
- SW-ACCESS-03      192.168.1.5         switch         Huvudkontor    
- AP-LAGER-02       192.168.200.102     access_point   Lager          
+ SW-ACCESS-03      192.168.1.5         Switch         Huvudkontor    
+ AP-LAGER-02       192.168.200.102     Access_point   Lager          
 
 Status: WARNING
- AP-FLOOR2-02      192.168.20.102      access_point   Huvudkontor    Uptime days: 2  Connected clients: 45        
- RT-LAGER-01       192.168.2.254       router         Lager          Uptime days: 2  
- SW-DC-TOR-02      10.0.1.2            switch         Datacenter     Uptime days: 5  
+ AP-FLOOR2-02      192.168.20.102      Access_point   Huvudkontor    Uptime days: 2  Connected clients: 45        
+ RT-LAGER-01       192.168.2.254       Router         Lager          Uptime days: 2  
+ SW-DC-TOR-02      10.0.1.2            Switch         Datacenter     Uptime days: 5  
 
 DEVICES WITH LOW UPTIME (<30 days)
-----------------------------------------
+----------------------------------------------------------------
 Hostname          Uptime      Site              Status
 SW-ACCESS-03      0 days      Huvudkontor       
 AP-FLOOR2-02      2 days      Huvudkontor       ⚠ WARNING
@@ -34,3 +34,13 @@ RT-LAGER-01       2 days      Lager             ⚠ WARNING
 SW-LAGER-02       23 days     Lager             
 SW-MAL-ACC-02     8 days      Kontor Malmö      
 SW-DC-TOR-02      5 days      Datacenter        ⚠ WARNING
+
+STATISTICS BY DEVICE TYPE
+-------------------------------------------------------------
+Switch:            18 st (1 offline)
+Router:             6 st (0 offline)
+Access Point:       9 st (1 offline)
+Firewall:           5 st (0 offline)
+Load Balancer:      2 st (0 offline)
+-------------------------------------------------------------
+TOTAL:             40 devices (2 offline = 5.0% offline)
