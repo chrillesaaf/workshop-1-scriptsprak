@@ -167,6 +167,32 @@ for location in data["locations"]:
 total_usage_percent = (total_used_ports / total_ports) * 100 if total_ports > 0 else 0
 report += f"\nTotal: {total_used_ports}/{total_ports} ports used ({total_usage_percent:.1f}%)\n"
 
+report += "\nSWITCHES WITH HIGH PORT USAGE (>80%)\n"
+report += "-------------------------------------------------------------\n"
+
+for location in data ["locations"]:
+    for device in location ["devices"]:
+        if device.get("type", "").lower() == "switch":
+            used = device["ports"]["used"]
+            total = device["ports"]["total"]
+            if total == 0:
+                continue
+
+            usage_percent = (used / total) * 100
+
+            if usage_percent > 80:
+                hostname = device["hostname"].ljust(18)
+                ports = f"{used}/{total}".ljust(10)
+                usage = f"{usage_percent:.1f}%".rjust(8)
+
+            if usage_percent == 100:
+                status = "⚠ FULL!".rjust(8)
+            else:
+                status = " ⚠ "
+
+            report += hostname + ports + usage + status + "\n"
+
+
 
 # Create a summary of the critical data
 summary =""
