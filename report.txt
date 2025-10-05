@@ -1,7 +1,7 @@
 ----------------------------------------------------------------------------
 NETWORK REPORT: TechCorp AB
 --------------------------------------------------------------------------
-Report Date: 2025-10-04 13:59:32
+Report Date: 2025-10-04 14:06:11
 Data Update: 2024-09-30 10:30:00
 
 SUMMARY
@@ -44,3 +44,14 @@ Firewall:           5 st (0 offline)
 Load Balancer:      2 st (0 offline)
 -------------------------------------------------------------
 TOTAL:             40 devices (2 offline = 5.0% offline)
+
+PORT USAGE ON SWITCHES
+-------------------------------------------------------------
+Site           Switches  Used/Total     Usage
+Huvudkontor    7 st      162/216        75.0%
+Lager          2 st      57/96          59.4%
+Kontor Malmö   3 st      79/96          82.3%
+Datacenter     5 st      231/240        96.2% ⚠ CRITICAL!
+Säkerhetskopia 1 st      12/28          42.9%
+
+Total: 541/676 ports used (80.0%)

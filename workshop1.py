@@ -125,6 +125,49 @@ for dev_type, value in stats.items():
 report += "-------------------------------------------------------------\n"
 report += f"TOTAL:{str(total_devices).rjust(15)} devices ({total_offline} offline = {offline_percent}% offline)\n"
 
+report += "\nPORT USAGE ON SWITCHES\n"
+report += "-------------------------------------------------------------\n"
+report += "Site".ljust(15) + "Switches".ljust(10) + "Used/Total".ljust(15) + "Usage\n"
+
+total_used_ports = 0
+total_ports = 0
+
+for location in data["locations"]:
+    switches = [d for d in location["devices"] if d.get("type", "").lower() == "switch"]
+    if not switches:
+        continue  # skip sites with no switches
+
+    num_switches = len(switches)
+    used_ports = sum(d["ports"]["used"] for d in switches)
+    total_ports_site = sum(d["ports"]["total"] for d in switches)
+    usage_percent = (used_ports / total_ports_site) * 100 if total_ports_site > 0 else 0
+
+# Warning levels
+    if usage_percent >= 95:
+        status = "⚠ CRITICAL!"
+    elif usage_percent >= 85:
+        status = "⚠"
+    else:
+        status = ""
+
+# Add line to report
+    report += (
+        location["site"].ljust(15)
+        + f"{num_switches} st".ljust(10)
+        + f"{used_ports}/{total_ports_site}".ljust(15)
+        + f"{usage_percent:.1f}% {status}".rstrip()  # remove extra spaces
+        + "\n"
+    )
+
+# accumulate totals
+    total_used_ports += used_ports
+    total_ports += total_ports_site
+
+# Totals
+total_usage_percent = (total_used_ports / total_ports) * 100 if total_ports > 0 else 0
+report += f"\nTotal: {total_used_ports}/{total_ports} ports used ({total_usage_percent:.1f}%)\n"
+
+
 # Create a summary of the critical data
 summary =""
 summary += "----------------------------------------------------------------------------\n"
