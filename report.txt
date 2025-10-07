@@ -1,7 +1,7 @@
-----------------------------------------------------------------------------
-NETWORK REPORT: TechCorp AB
---------------------------------------------------------------------------
-Report Date: 2025-10-07 09:50:36
+--------------------------------------------------------------------------------------
+                          NETWORK REPORT: TechCorp AB                           
+--------------------------------------------------------------------------------------
+Report Date: 2025-10-07 11:21:21
 Data Update: 2024-09-30 10:30:00
 
 SUMMARY
@@ -87,20 +87,36 @@ STATISTICS PER SITE
 Huvudkontor (Stockholm):
  Devices: 15 (13 online, 1 offline, 1 warning)
  Contact: Anna Andersson
-
 Lager (Göteborg):
  Devices: 5 (3 online, 1 offline, 1 warning)
  Contact: Björn Björnsson
-
 Kontor Malmö (Malmö):
  Devices: 7 (7 online, 0 offline, 0 warning)
  Contact: Cecilia Carlsson
-
 Datacenter (Stockholm):
  Devices: 10 (9 online, 0 offline, 1 warning)
  Contact: David Davidsson
-
 Säkerhetskopia (Umeå):
  Devices: 3 (3 online, 0 offline, 0 warning)
  Contact: Erik Eriksson
 
+ACCESS POINTS - CLIENT OVERVIEW
+---------------------------------------------
+Highest load:
+ AP-FLOOR2-02      45 clients ⚠ Overloaded
+ AP-FLOOR3-01      31 clients
+ AP-MAL-01         28 clients
+ AP-FLOOR1-02      25 clients
+ AP-FLOOR2-01      23 clients
+
+RECOMMENDATIONS
+----------------
+. URGENT: Investigate offline devices immediately (2 total)
+. CRITICAL: Datacenter has extremely high port utilization (96.2%) - plan for expansion
+. Check devices with low uptime, especially those <5 days
+. AP-FLOOR2-02 has 45 connected clients (Warning) - consider load balancing
+. Consider standardizing vendors per site for easier maintenance
+
+---------------------------------------------------------------------------------------
+                                 END OF REPORT                                  
+---------------------------------------------------------------------------------------

@@ -217,13 +217,95 @@ for location in data["locations"]:
 
     report += f"{site} ({city}):\n"
     report += f" Devices: {total_devices} ({online} online, {offline} offline, {warning} warning)\n"
-    report += f" Contact: {contact}\n\n"
+    report += f" Contact: {contact}\n"
+
+report += "\nACCESS POINTS - CLIENT OVERVIEW\n"
+report += "---------------------------------------------\n"
+report += "Highest load:\n"
+
+AP = []
+
+for location in data["locations"]:
+    for device in location["devices"]:
+        if device.get("type", "").lower() == "access_point":
+            clients = device.get("connected_clients", 0)
+            AP.append({
+                "hostname": device["hostname"],
+                "clients": clients
+            })
+
+AP.sort(key=lambda x: x["clients"], reverse=True)
+
+for ap in AP:
+    if ap["clients"] > 20:
+        warning = " ⚠ Overloaded" if ap["clients"] > 40 else ""
+        report += f" {ap['hostname'].ljust(16)} {str(ap['clients']).rjust(3)} clients{warning}\n"
+
+report += "\nRECOMMENDATIONS\n"
+report += "----------------\n"
+
+# Count offline devices
+offline_count = 0
+for location in data["locations"]:
+    for device in location["devices"]:
+        if device.get("status") == "offline":
+            offline_count += 1
+
+# Find site with highest port usage
+highest_site = ""
+highest_usage = 0
+
+for location in data["locations"]:
+    total_ports = 0
+    used_ports = 0
+
+    for device in location["devices"]:
+        if "ports" in device:
+            total_ports += device["ports"].get("total", 0)
+            used_ports += device["ports"].get("used", 0)
+
+    if total_ports > 0:
+        usage_percent = (used_ports / total_ports) * 100
+        if usage_percent > highest_usage:
+            highest_usage = usage_percent
+            highest_site = location["site"]
+
+# Find AP with most clients
+most_loaded_ap = ""
+most_clients = 0
+
+for location in data["locations"]:
+    for device in location["devices"]:
+        if device.get("type") == "access_point":
+            clients = device.get("connected_clients", 0)
+            if clients > most_clients:
+                most_clients = clients
+                most_loaded_ap = device["hostname"]
+
+# Write report
+report += f". URGENT: Investigate offline devices immediately ({offline_count} total)\n"
+
+if highest_usage > 90:
+    report += f". CRITICAL: {highest_site} has extremely high port utilization ({highest_usage:.1f}%) - plan for expansion\n"
+
+report += ". Check devices with low uptime, especially those <5 days\n"
+
+if most_clients > 20:
+    warning = " (Warning)" if most_clients > 40 else ""
+    report += f". {most_loaded_ap} has {most_clients} connected clients{warning} - consider load balancing\n"
+
+report += ". Consider standardizing vendors per site for easier maintenance\n"
+
+# Footer
+report += "\n---------------------------------------------------------------------------------------\n"
+report += "END OF REPORT".center(80) + "\n"
+report += "---------------------------------------------------------------------------------------\n"
 
 # Create a summary of the critical data
 summary =""
-summary += "----------------------------------------------------------------------------\n"
-summary += f"NETWORK REPORT: {data['company']}\n"
-summary += "--------------------------------------------------------------------------\n"
+summary += "--------------------------------------------------------------------------------------\n"
+summary += (f"NETWORK REPORT: {data.get('company', 'Unknown')}").center(80) + "\n"
+summary += "--------------------------------------------------------------------------------------\n"
 summary += f"Report Date: {t_format}\n"
 summary += f"Data Update: {t_format2}\n"
 summary += "\n"
