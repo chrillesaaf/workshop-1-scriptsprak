@@ -192,7 +192,23 @@ for location in data ["locations"]:
 
             report += hostname + ports + usage + status + "\n"
 
+report += "\nVLAN OVERVIEW\n"
+report += "-------------------------------------------------------------"
 
+vlans_found = set()
+
+for location in data["locations"]:
+    for device in location["devices"]:
+        for vlan in device.get("vlans", []):
+            vlans_found.add(vlan)
+
+report += f"\nTotal unique VLANs in the network: {len(vlans_found)}\n"
+report += "VLANs: "
+report += ", ".join(str(vlan) for vlan in sorted(vlans_found)) + "\n"
+
+report += "\nSTATISTICS PER SITE\n"
+report += "-------------------------------------------------------------\n"
+        
 
 # Create a summary of the critical data
 summary =""
