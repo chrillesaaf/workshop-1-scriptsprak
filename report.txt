@@ -1,7 +1,7 @@
 ----------------------------------------------------------------------------
 NETWORK REPORT: TechCorp AB
 --------------------------------------------------------------------------
-Report Date: 2025-10-07 08:48:16
+Report Date: 2025-10-07 09:50:36
 Data Update: 2024-09-30 10:30:00
 
 SUMMARY
@@ -82,5 +82,25 @@ VLAN OVERVIEW
 Total unique VLANs in the network: 19
 VLANs: 10, 20, 30, 40, 50, 100, 110, 120, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 2100
 
-Statitics per site
+STATISTICS PER SITE
 -------------------------------------------------------------
+Huvudkontor (Stockholm):
+ Devices: 15 (13 online, 1 offline, 1 warning)
+ Contact: Anna Andersson
+
+Lager (Göteborg):
+ Devices: 5 (3 online, 1 offline, 1 warning)
+ Contact: Björn Björnsson
+
+Kontor Malmö (Malmö):
+ Devices: 7 (7 online, 0 offline, 0 warning)
+ Contact: Cecilia Carlsson
+
+Datacenter (Stockholm):
+ Devices: 10 (9 online, 0 offline, 1 warning)
+ Contact: David Davidsson
+
+Säkerhetskopia (Umeå):
+ Devices: 3 (3 online, 0 offline, 0 warning)
+ Contact: Erik Eriksson
+
