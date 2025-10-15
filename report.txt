@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------
                           NETWORK REPORT: TechCorp AB                           
 --------------------------------------------------------------------------------------
-Report Date: 2025-10-07 11:21:21
+Report Date: 2025-10-15 17:10:25
 Data Update: 2024-09-30 10:30:00
 
 SUMMARY
@@ -25,15 +25,13 @@ Status: WARNING
 DEVICES WITH LOW UPTIME (<30 days)
 ----------------------------------------------------------------
 Hostname          Uptime      Site              Status
-SW-ACCESS-03      0 days      Huvudkontor       
-AP-FLOOR2-02      2 days      Huvudkontor       ⚠ WARNING
-AP-FLOOR2-01      12 days     Huvudkontor       
-SW-ACCESS-05      15 days     Huvudkontor       
-AP-LAGER-02       0 days      Lager             
-RT-LAGER-01       2 days      Lager             ⚠ WARNING
-SW-LAGER-02       23 days     Lager             
-SW-MAL-ACC-02     8 days      Kontor Malmö      
-SW-DC-TOR-02      5 days      Datacenter        ⚠ WARNING
+AP-FLOOR2-02      2 days      Säkerhetskopia    ⚠ WARNING
+RT-LAGER-01       2 days      Säkerhetskopia    ⚠ WARNING
+SW-DC-TOR-02      5 days      Säkerhetskopia    ⚠ WARNING
+SW-MAL-ACC-02     8 days      Säkerhetskopia    
+AP-FLOOR2-01      12 days     Säkerhetskopia    
+SW-ACCESS-05      15 days     Säkerhetskopia    
+SW-LAGER-02       23 days     Säkerhetskopia    
 
 STATISTICS BY DEVICE TYPE
 -------------------------------------------------------------

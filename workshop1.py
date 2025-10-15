@@ -58,21 +58,20 @@ for location in data["locations"]:
             report += line + warning + "\n"
 
 # Import devices with low uptime from Json-file
-# Need to fix it, sort uptimedays low to high
-
 report += "\nDEVICES WITH LOW UPTIME (<30 days)\n"
 report += "----------------------------------------------------------------\n"
 report += "Hostname".ljust(18) + "Uptime".ljust(12) + "Site".ljust(18) + "Status\n"
 
-for location in data["locations"]:
+all_devices = [
+    {**d, "site": loc["site"]}
+    for loc in data["locations"]
+    for d in loc["devices"]
+    if "uptime_days" in d and 1 <= int(d["uptime_days"]) <= 31
+]
 
-    sorted_devices = sorted(
-        location["devices"],
-        key=lambda d: int(d.get("uptime_days", 9999))
-    )
+sorted_devices = sorted(all_devices, key=lambda d: int(d["uptime_days"]))
 
-    for device in sorted_devices:
-        if "uptime_days" in device and int(device["uptime_days"]) < 31:
+for device in sorted_devices:
             hostname = device["hostname"].ljust(18)
             uptime = (str(device["uptime_days"]) + " days").ljust(12)
             site = location["site"].ljust(18)
